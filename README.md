@@ -39,7 +39,7 @@ req := Request{
                 Token: "token",
             },
         },
-	}
+    }
 ```
 
 Http request with custom authentication 
@@ -51,11 +51,11 @@ req := Request{
         Body:    nil,
         Timeout: 10,
         Auth: &Auth{
-			Custom: map[string]string{
-				"my_custom_header": "header val",
-			},
-		},
-	}
+            Custom: map[string]string{
+                "my_custom_header": "header val",
+            },
+        },
+    }
 ```
 
 Make the http request using above request object as follows
