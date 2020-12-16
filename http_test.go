@@ -263,7 +263,11 @@ func Test_getAuthBearerToken_success(t *testing.T) {
 		Method:  http.MethodGet,
 		Body:    nil,
 		Timeout: 10,
-		Auth:    &Auth{BearerToken: &AuthBearerToken{Token: "token"}},
+		Auth: &Auth{
+			BearerToken: &AuthBearerToken{
+				Token: "token",
+			},
+		},
 	}
 
 	resp, err := send(&r)
@@ -306,9 +310,11 @@ func Test_getAuthCustomHeader_success(t *testing.T) {
 		Method:  http.MethodGet,
 		Body:    nil,
 		Timeout: 10,
-		Auth: &Auth{Custom: map[string]string{
-			"my_custom_header": "header val",
-		}},
+		Auth: &Auth{
+			Custom: map[string]string{
+				"my_custom_header": "header val",
+			},
+		},
 	}
 
 	resp, err := send(&r)
