@@ -9,13 +9,12 @@ Skeleton is a dead simple and beginner friendly http client with support for
 
 ## Usage
 
-Http request with basic authentication
+Http `GET` request with basic authentication
 
 ```go
 req := Request{
         Url:     "http://localhost:8080/auth/basic/user",
-        Method:  http.MethodPut,
-        Body:    nil,
+        Method:  http.MethodGet,
         Timeout: 10,
         Auth: &Auth{
             Basic: &AuthBasic{
@@ -26,13 +25,16 @@ req := Request{
     }
 ```
 
-Http request with bearer token authentication
+Http `POST` request with bearer token authentication
 
 ```go
 req := Request{
         Url:     "http://localhost:8080/auth/bearer_token/users",
-        Method:  http.MethodGet,
-        Body:    nil,
+        Method:  http.MethodPost,
+        Body: map[string]string{
+            "firstName": "foo",
+            "lastName":  "bar",
+        },
         Timeout: 10,
         Auth:    &Auth{
             BearerToken: &AuthBearerToken{
@@ -42,13 +44,12 @@ req := Request{
     }
 ```
 
-Http request with custom authentication 
+Http `GET` request with custom authentication 
 
 ```go
 req := Request{
         Url:     "http://localhost:8080/auth/custom/users",
         Method:  http.MethodGet,
-        Body:    nil,
         Timeout: 10,
         Auth: &Auth{
             Custom: map[string]string{
