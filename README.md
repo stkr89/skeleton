@@ -1,7 +1,7 @@
 # Skeleton
 
-Skeleton is a dead simple http client with support for `GET`, `POST`, `PUT`, `DELETE`
-methods. It supports following authentication types:
+Skeleton is a dead simple and beginner friendly http client with support for 
+`GET`, `POST`, `PUT`, `DELETE` methods. It supports following authentication types:
 
 - Basic
 - Bearer Token
