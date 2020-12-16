@@ -16,7 +16,7 @@ func Test_getAuthBasic_failure(t *testing.T) {
 		Timeout: 10,
 	}
 
-	resp, err := send(&r)
+	resp, err := Send(&r)
 	assert.NoError(t, err)
 	assert.Equal(t, http.StatusUnauthorized, resp.StatusCode)
 }
@@ -35,7 +35,7 @@ func Test_getAuthBasic_success(t *testing.T) {
 		},
 	}
 
-	resp, err := send(&r)
+	resp, err := Send(&r)
 	assert.NoError(t, err)
 
 	respBytes, err := ioutil.ReadAll(resp.Body)
@@ -55,7 +55,7 @@ func Test_postAuthBasic_failure(t *testing.T) {
 		Timeout: 10,
 	}
 
-	resp, err := send(&r)
+	resp, err := Send(&r)
 	assert.NoError(t, err)
 	assert.Equal(t, http.StatusUnauthorized, resp.StatusCode)
 }
@@ -74,7 +74,7 @@ func Test_postAuthBasic_noBody_failure(t *testing.T) {
 		},
 	}
 
-	resp, err := send(&r)
+	resp, err := Send(&r)
 	assert.NoError(t, err)
 	assert.Equal(t, http.StatusBadRequest, resp.StatusCode)
 }
@@ -96,7 +96,7 @@ func Test_postAuthBasic_success(t *testing.T) {
 		},
 	}
 
-	resp, err := send(&r)
+	resp, err := Send(&r)
 	assert.NoError(t, err)
 
 	assert.Equal(t, http.StatusCreated, resp.StatusCode)
@@ -121,7 +121,7 @@ func Test_putAuthBasic_failure(t *testing.T) {
 		Timeout: 10,
 	}
 
-	resp, err := send(&r)
+	resp, err := Send(&r)
 	assert.NoError(t, err)
 	assert.Equal(t, http.StatusUnauthorized, resp.StatusCode)
 }
@@ -140,7 +140,7 @@ func Test_putAuthBasic_noBody_failure(t *testing.T) {
 		},
 	}
 
-	resp, err := send(&r)
+	resp, err := Send(&r)
 	assert.NoError(t, err)
 	assert.Equal(t, http.StatusBadRequest, resp.StatusCode)
 }
@@ -159,7 +159,7 @@ func Test_putAuthBasic_invalidCredentials_failure(t *testing.T) {
 		},
 	}
 
-	resp, err := send(&r)
+	resp, err := Send(&r)
 	assert.NoError(t, err)
 	assert.Equal(t, http.StatusUnauthorized, resp.StatusCode)
 }
@@ -181,7 +181,7 @@ func Test_putAuthBasic_success(t *testing.T) {
 		},
 	}
 
-	resp, err := send(&r)
+	resp, err := Send(&r)
 	assert.NoError(t, err)
 
 	assert.Equal(t, http.StatusCreated, resp.StatusCode)
@@ -206,7 +206,7 @@ func Test_deleteAuthBasic_failure(t *testing.T) {
 		Timeout: 10,
 	}
 
-	resp, err := send(&r)
+	resp, err := Send(&r)
 	assert.NoError(t, err)
 	assert.Equal(t, http.StatusUnauthorized, resp.StatusCode)
 }
@@ -225,7 +225,7 @@ func Test_deleteAuthBasic_success(t *testing.T) {
 		},
 	}
 
-	resp, err := send(&r)
+	resp, err := Send(&r)
 	assert.NoError(t, err)
 	assert.Equal(t, http.StatusOK, resp.StatusCode)
 }
@@ -238,7 +238,7 @@ func Test_getAuthBearerToken_missingToken_failure(t *testing.T) {
 		Timeout: 10,
 	}
 
-	resp, err := send(&r)
+	resp, err := Send(&r)
 	assert.NoError(t, err)
 	assert.Equal(t, http.StatusUnauthorized, resp.StatusCode)
 }
@@ -252,7 +252,7 @@ func Test_getAuthBearerToken_invalidToken_failure(t *testing.T) {
 		Auth:    &Auth{BearerToken: &AuthBearerToken{Token: "t"}},
 	}
 
-	resp, err := send(&r)
+	resp, err := Send(&r)
 	assert.NoError(t, err)
 	assert.Equal(t, http.StatusUnauthorized, resp.StatusCode)
 }
@@ -270,7 +270,7 @@ func Test_getAuthBearerToken_success(t *testing.T) {
 		},
 	}
 
-	resp, err := send(&r)
+	resp, err := Send(&r)
 	assert.NoError(t, err)
 	assert.Equal(t, http.StatusOK, resp.StatusCode)
 }
@@ -283,7 +283,7 @@ func Test_getAuthCustomHeader_missingHeader_failure(t *testing.T) {
 		Timeout: 10,
 	}
 
-	resp, err := send(&r)
+	resp, err := Send(&r)
 	assert.NoError(t, err)
 	assert.Equal(t, http.StatusBadRequest, resp.StatusCode)
 }
@@ -299,7 +299,7 @@ func Test_getAuthCustomHeader_invalidHeader_failure(t *testing.T) {
 		}},
 	}
 
-	resp, err := send(&r)
+	resp, err := Send(&r)
 	assert.NoError(t, err)
 	assert.Equal(t, http.StatusBadRequest, resp.StatusCode)
 }
@@ -317,7 +317,7 @@ func Test_getAuthCustomHeader_success(t *testing.T) {
 		},
 	}
 
-	resp, err := send(&r)
+	resp, err := Send(&r)
 	assert.NoError(t, err)
 	assert.Equal(t, http.StatusOK, resp.StatusCode)
 }

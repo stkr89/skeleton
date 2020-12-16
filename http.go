@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-func send(r *Request) (*http.Response, error) {
+func Send(r *Request) (*http.Response, error) {
 	if r.Body == nil {
 		r.Body = make(map[string]string)
 	}
