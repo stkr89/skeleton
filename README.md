@@ -1,5 +1,7 @@
 # Skeleton
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/stkr89/skeleton)](https://goreportcard.com/report/github.com/stkr89/skeleton)
+
 Skeleton is a dead simple and beginner friendly http client with support for 
 `GET`, `POST`, `PUT`, `DELETE` methods. It supports following authentication types:
 
