@@ -8,9 +8,7 @@ import (
 	"time"
 )
 
-/*
-Send http request based on the fields specified in skeleton.Request
-*/
+// Send http request based on the fields specified in skeleton.Request
 func Send(r *Request) (*http.Response, error) {
 	if r.Body == nil {
 		r.Body = make(map[string]string)
