@@ -1,5 +1,6 @@
 # Skeleton
 
+[![GoDoc](https://godoc.org/github.com/stkr89/skeleton?status.svg)](https://godoc.org/github.com/stkr89/skeleton)
 [![Go Report Card](https://goreportcard.com/badge/github.com/stkr89/skeleton)](https://goreportcard.com/report/github.com/stkr89/skeleton)
 
 Skeleton is a dead simple and beginner friendly http client with support for 
