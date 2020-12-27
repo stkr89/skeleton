@@ -1,13 +1,9 @@
 language: go
-go:
-  - 1.10.x
-  - master
-os:
-  - linux
-  - osx
-dist: trusty
+
 sudo: false
-install: true
+
+go:
+  - "1.14"
+
 script:
-  - env GO111MODULE=on go build
-  - env GO111MODULE=on go test ./...
+  - go test -v -race $(go list ./... | grep -v vendor)
