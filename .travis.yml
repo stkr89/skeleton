@@ -6,4 +6,4 @@ go:
   - "1.14"
 
 script:
-  - go test -v -race $(go list ./... | grep -v vendor)
+  - go test -p 1 -v -race $(go list ./... | grep -v vendor)
