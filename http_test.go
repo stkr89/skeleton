@@ -2,15 +2,19 @@ package skeleton
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/stretchr/testify/assert"
 	"io/ioutil"
 	"net/http"
+	"os"
 	"testing"
 )
 
+var url = os.Getenv("url")
+
 func Test_getAuthBasic_failure(t *testing.T) {
 	r := Request{
-		Url:     "http://localhost:8080/auth/basic/users",
+		Url:     fmt.Sprintf("%s/auth/basic/users", url),
 		Method:  http.MethodGet,
 		Body:    nil,
 		Timeout: 10,
@@ -23,7 +27,7 @@ func Test_getAuthBasic_failure(t *testing.T) {
 
 func Test_getAuthBasic_success(t *testing.T) {
 	r := Request{
-		Url:     "http://localhost:8080/auth/basic/users",
+		Url:     fmt.Sprintf("%s/auth/basic/users", url),
 		Method:  http.MethodGet,
 		Body:    nil,
 		Timeout: 10,
@@ -49,7 +53,7 @@ func Test_getAuthBasic_success(t *testing.T) {
 
 func Test_postAuthBasic_failure(t *testing.T) {
 	r := Request{
-		Url:     "http://localhost:8080/auth/basic/user",
+		Url:     fmt.Sprintf("%s/auth/basic/user", url),
 		Method:  http.MethodPost,
 		Body:    nil,
 		Timeout: 10,
@@ -62,7 +66,7 @@ func Test_postAuthBasic_failure(t *testing.T) {
 
 func Test_postAuthBasic_noBody_failure(t *testing.T) {
 	r := Request{
-		Url:     "http://localhost:8080/auth/basic/user",
+		Url:     fmt.Sprintf("%s/auth/basic/user", url),
 		Method:  http.MethodPost,
 		Body:    nil,
 		Timeout: 10,
@@ -81,7 +85,7 @@ func Test_postAuthBasic_noBody_failure(t *testing.T) {
 
 func Test_postAuthBasic_success(t *testing.T) {
 	r := Request{
-		Url:    "http://localhost:8080/auth/basic/user",
+		Url:    fmt.Sprintf("%s/auth/basic/user", url),
 		Method: http.MethodPost,
 		Body: map[string]string{
 			"firstName": "foo",
@@ -115,7 +119,7 @@ func Test_postAuthBasic_success(t *testing.T) {
 
 func Test_putAuthBasic_failure(t *testing.T) {
 	r := Request{
-		Url:     "http://localhost:8080/auth/basic/user",
+		Url:     fmt.Sprintf("%s/auth/basic/user", url),
 		Method:  http.MethodPut,
 		Body:    nil,
 		Timeout: 10,
@@ -128,7 +132,7 @@ func Test_putAuthBasic_failure(t *testing.T) {
 
 func Test_putAuthBasic_noBody_failure(t *testing.T) {
 	r := Request{
-		Url:     "http://localhost:8080/auth/basic/user",
+		Url:     fmt.Sprintf("%s/auth/basic/user", url),
 		Method:  http.MethodPut,
 		Body:    nil,
 		Timeout: 10,
@@ -147,7 +151,7 @@ func Test_putAuthBasic_noBody_failure(t *testing.T) {
 
 func Test_putAuthBasic_invalidCredentials_failure(t *testing.T) {
 	r := Request{
-		Url:     "http://localhost:8080/auth/basic/user",
+		Url:     fmt.Sprintf("%s/auth/basic/user", url),
 		Method:  http.MethodPut,
 		Body:    nil,
 		Timeout: 10,
@@ -166,7 +170,7 @@ func Test_putAuthBasic_invalidCredentials_failure(t *testing.T) {
 
 func Test_putAuthBasic_success(t *testing.T) {
 	r := Request{
-		Url:    "http://localhost:8080/auth/basic/user",
+		Url:    fmt.Sprintf("%s/auth/basic/user", url),
 		Method: http.MethodPut,
 		Body: map[string]string{
 			"firstName": "Foo",
@@ -200,7 +204,7 @@ func Test_putAuthBasic_success(t *testing.T) {
 
 func Test_deleteAuthBasic_failure(t *testing.T) {
 	r := Request{
-		Url:     "http://localhost:8080/auth/basic/user/1",
+		Url:     fmt.Sprintf("%s/auth/basic/user/1", url),
 		Method:  http.MethodDelete,
 		Body:    nil,
 		Timeout: 10,
@@ -213,7 +217,7 @@ func Test_deleteAuthBasic_failure(t *testing.T) {
 
 func Test_deleteAuthBasic_success(t *testing.T) {
 	r := Request{
-		Url:     "http://localhost:8080/auth/basic/user/1",
+		Url:     fmt.Sprintf("%s/auth/basic/user/1", url),
 		Method:  http.MethodDelete,
 		Body:    nil,
 		Timeout: 10,
@@ -232,7 +236,7 @@ func Test_deleteAuthBasic_success(t *testing.T) {
 
 func Test_getAuthBearerToken_missingToken_failure(t *testing.T) {
 	r := Request{
-		Url:     "http://localhost:8080/auth/bearer_token/users",
+		Url:     fmt.Sprintf("%s/auth/bearer_token/users", url),
 		Method:  http.MethodGet,
 		Body:    nil,
 		Timeout: 10,
@@ -245,7 +249,7 @@ func Test_getAuthBearerToken_missingToken_failure(t *testing.T) {
 
 func Test_getAuthBearerToken_invalidToken_failure(t *testing.T) {
 	r := Request{
-		Url:     "http://localhost:8080/auth/bearer_token/users",
+		Url:     fmt.Sprintf("%s/auth/bearer_token/users", url),
 		Method:  http.MethodGet,
 		Body:    nil,
 		Timeout: 10,
@@ -259,7 +263,7 @@ func Test_getAuthBearerToken_invalidToken_failure(t *testing.T) {
 
 func Test_getAuthBearerToken_success(t *testing.T) {
 	r := Request{
-		Url:     "http://localhost:8080/auth/bearer_token/users",
+		Url:     fmt.Sprintf("%s/auth/bearer_token/users", url),
 		Method:  http.MethodGet,
 		Body:    nil,
 		Timeout: 10,
@@ -277,7 +281,7 @@ func Test_getAuthBearerToken_success(t *testing.T) {
 
 func Test_getAuthCustomHeader_missingHeader_failure(t *testing.T) {
 	r := Request{
-		Url:     "http://localhost:8080/auth/custom/users",
+		Url:     fmt.Sprintf("%s/auth/custom/users", url),
 		Method:  http.MethodGet,
 		Body:    nil,
 		Timeout: 10,
@@ -290,7 +294,7 @@ func Test_getAuthCustomHeader_missingHeader_failure(t *testing.T) {
 
 func Test_getAuthCustomHeader_invalidHeader_failure(t *testing.T) {
 	r := Request{
-		Url:     "http://localhost:8080/auth/custom/users",
+		Url:     fmt.Sprintf("%s/auth/custom/users", url),
 		Method:  http.MethodGet,
 		Body:    nil,
 		Timeout: 10,
@@ -306,7 +310,7 @@ func Test_getAuthCustomHeader_invalidHeader_failure(t *testing.T) {
 
 func Test_getAuthCustomHeader_success(t *testing.T) {
 	r := Request{
-		Url:     "http://localhost:8080/auth/custom/users",
+		Url:     fmt.Sprintf("%s/auth/custom/users", url),
 		Method:  http.MethodGet,
 		Body:    nil,
 		Timeout: 10,
