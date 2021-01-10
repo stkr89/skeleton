@@ -32,13 +32,21 @@ req := Request{
 Http `POST` request with bearer token authentication
 
 ```go
+type user struct {
+    FirstName string `json:"firstName"`
+    LastName  string `json:"lastName"`
+}
+
+user := user{
+    FirstName: "foo",
+    LastName:  "bar",
+}
+
+userBytes, _ := json.Marshal(user)
 req := Request{
         Url:     "http://localhost:8080/auth/bearer_token/users",
         Method:  http.MethodPost,
-        Body: map[string]string{
-            "firstName": "foo",
-            "lastName":  "bar",
-        },
+        Body: userBytes,
         Timeout: 10,
         Auth:    &Auth{
             BearerToken: &AuthBearerToken{
