@@ -43,6 +43,7 @@ user := user{
 }
 
 userBytes, _ := json.Marshal(user)
+
 req := Request{
         Url:     "http://localhost:8080/auth/bearer_token/users",
         Method:  http.MethodPost,
