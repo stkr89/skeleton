@@ -4,7 +4,7 @@ package skeleton
 type Request struct {
 	Url     string
 	Method  string
-	Body    map[string]string
+	Body    []byte
 	Timeout int
 	Auth    *Auth
 }

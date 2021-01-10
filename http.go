@@ -3,7 +3,6 @@ package skeleton
 import (
 	"bytes"
 	"encoding/base64"
-	"encoding/json"
 	"net/http"
 	"time"
 )
@@ -11,21 +10,18 @@ import (
 // Send function sends http request based on the fields specified in skeleton.Request
 func Send(r *Request) (*http.Response, error) {
 	if r.Body == nil {
-		r.Body = make(map[string]string)
+		r.Body = []byte{}
 	}
 
-	jsonBytes, err := json.Marshal(r.Body)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest(r.Method, r.Url, bytes.NewBuffer(jsonBytes))
+	req, err := http.NewRequest(r.Method, r.Url, bytes.NewBuffer(r.Body))
 	if err != nil {
 		return nil, err
 	}
 
 	req.Header.Add("Accept", "application/json")
 	req.Header.Add("Content-Type", "application/json")
+
+	defer req.Body.Close()
 
 	if r.Auth != nil {
 		addAuthorizationHeaders(r, req)
